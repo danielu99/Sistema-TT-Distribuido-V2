@@ -72,10 +72,10 @@ class ProfesorEvaluacion extends React.Component {
         }
     }
 
-    renderPalabras = ({ Palabra }) =>
+    renderPalabras = ({ palabra }) =>
         <tr>
             <td>
-                {Palabra}
+                {palabra}
             </td>
         </tr>
 
@@ -93,7 +93,7 @@ class ProfesorEvaluacion extends React.Component {
             .catch(err => console.error(err))
         const json = await response.json();
         if (json.data != 0) {
-            this.setState({ PalabrasClave: json.data })
+            this.setState({ PalabrasClave: json})
         }
     }
 

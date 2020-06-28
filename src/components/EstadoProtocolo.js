@@ -56,11 +56,11 @@ class EstadoProtocolo extends React.Component {
                 boleta: this.state.usuario,
             })
         })
-        .catch(err => console.error(err))
+            .catch(err => console.error(err))
         const json = await response.json();
-        
-        this.setState({ evaluaciones: json })
-        
+        if (json.data != 0) {
+            this.setState({ evaluaciones: json })
+        }
     }
 
     entrega() {

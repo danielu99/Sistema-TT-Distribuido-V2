@@ -14,6 +14,7 @@ var transporter = nodemailer.createTransport({
     }
 })
 
+oracledb.autoCommit=true
 
 const CatalogoProfesores = "select p.nombre nombre, p.rol rol, a.nombre academia from profesor p, pertenece pt, academia a where p.usuario=pt.nombre and a.clave=pt.clave";
 
@@ -71,6 +72,8 @@ app.use(function (req, res, next) {
     next();
 });
 
+
+
 app.get("/", (req, res) => {
     res.send("Ve a /profesor para ver a profesores")
 });
@@ -109,6 +112,7 @@ app.post("/NombreProfe", (req, res) => {
 app.post("/LoginProfes", (req, res) => {
     let profe = req.body;
     var sql = "select * from profesor where usuario='" + profe.usuario + "' and contraseña='" + profe.contraseña + "';"
+
     mysqlConnection.query(sql, (err, rows) => {
         if (rows.length > 0) {
             return res.json({
@@ -128,7 +132,6 @@ app.post("/LoginProfes", (req, res) => {
 app.post("/LoginAlumnos", (req, res) => {
     let alumno = req.body;
     var sql = "SELECT * FROM ALUMNOS WHERE BOLETA='" + alumno.boleta + "' AND CONTRASEÑA='" + alumno.contraseña + "'"
-
     oracledb.getConnection(oracledbConnection, function (err, connection) {
         if (err) {
             console.log(err.message)
@@ -139,13 +142,13 @@ app.post("/LoginAlumnos", (req, res) => {
                 console.log(err.message)
             }
             if (result.rows.length > 0) {
-
+                connection.close()
                 return res.json({
                     data: 1
                 })
             }
             else {
-                console.log(result)
+                connection.close()
                 return res.json({
                     data: 0
                 })
@@ -180,7 +183,7 @@ app.post("/RegistroProfe", (req, res) => {
 
 app.post('/RegistroAlumno', (req, res) => {
     let alumno = req.body;
-    var sql = "insert into alumnos (nombre,boleta,correo,contraseña) values ('" + alumno.nombre + "','" + alumno.boleta + "','" + alumno.correo + "','" + alumno.contraseña + "')";
+    var sql = "INSERT INTO ALUMNOS(nombre,boleta,correo,contraseña) VALUES('" + alumno.nombre + "','" + alumno.boleta + "','" + alumno.correo + "','" + alumno.contraseña + "')";
 
     oracledb.getConnection(oracledbConnection, function (err, connection) {
         if (err) {
@@ -189,11 +192,13 @@ app.post('/RegistroAlumno', (req, res) => {
         }
         connection.execute(sql, (err, results) => {
             if (err) {
+                connection.close()
                 return res.json({
                     data: 0
                 })
             }
             else {
+                connection.close()
                 return res.json({
                     data: 1
                 })
@@ -385,12 +390,13 @@ app.post('/ProtocoloEvaluado', (req, res) => {
                         console.log(err.message)
                     }
                     else {
-                        for (var i = 0; i < results.length; i++) {
+                        
+                        for (var i = 0; i < results.rows.length; i++) {
                             var opcionesMail = {
                                 from: 'Protocolos 3CM9',
-                                to: results[i].correo,
+                                to: results.rows[0][0],
                                 subject: 'Actualización de evaluación de Protocolo',
-                                text: "La evaluación del profesor " + nombre + " sobre tu protocolo ha sido actualziada."
+                                text: "La evaluación del profesor " + nombre + " sobre tu protocolo ha sido actualizada."
                             }
                             transporter.sendMail(opcionesMail, function (err) {
                                 if (err) {
@@ -454,7 +460,7 @@ app.post("/NombreAlumno", (req, res) => {
 
 app.post("/EvaluacionesAlumno", (req, res) => {
     let Alumno = req.body
-    var tt = "select numerott from Alumnos where boleta='" + Alumno.boleta + "'"
+    var tt = "select numerott from Alumnos where boleta='" + Alumno.boleta + "' and numerott is not null"
 
     oracledb.getConnection(oracledbConnection, function (err, connection) {
         if (err) {
@@ -483,7 +489,7 @@ app.post("/EvaluacionesAlumno", (req, res) => {
                         const array = results.rows.map(n => {
                             return ("'" + n.profesor + "'")
                         })
-                        
+
                         var sql3 = "select nombre, usuario from profesor where usuario in (" + array + ") "
                         mysqlConnection.query(sql3, (err, resultProfesor) => {
                             const prueba2 = results.rows.map(n => {
@@ -562,7 +568,7 @@ app.post("/AlumnoProtocolo", (req, res) => {
                     data: 0
                 })
             }
-            
+
             else {
                 return res.json({
                     data: results.rows
@@ -598,7 +604,7 @@ app.post("/PalabrasClave", (req, res) => {
             console.log(err.stack)
         }
         else {
-            
+
             if (results.rows.length > 0) {
                 return res.json(
                     results.rows
@@ -622,7 +628,7 @@ app.post("/ObtenLink", (req, res) => {
         }
         else {
             if (results.rows.length > 0) {
-                
+
                 return res.json(
                     results.rows
                 )
