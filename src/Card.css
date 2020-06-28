@@ -1,0 +1,61 @@
+.card {
+    border: none;
+    border-radius: 8px;
+    background: url('./images/card.jpg') ;
+    width: 600px;
+    display: inline-block;
+    height: 200px;
+    
+}
+
+.card:active {
+    position:relative;
+    top:1px;
+}
+
+.card:hover {
+	background:linear-gradient(to bottom, #468ccf 5%, #63b8ee 100%);
+	background-color:#468ccf;
+}
+
+/* body{
+    background-color: #468ccf;
+} */
+
+.imagen{
+    float: left;
+}
+
+.Menu{
+    text-align: center;
+}
+
+.container3{
+    text-align: center;
+}
+
+.Fitness-User-Info {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: 200px;
+}
+.Fitness-Card {
+    max-height: 250px;
+    max-width: 600px;   
+}
+.Fitness-Card-Info {
+    padding-left: 0;
+    padding-right: 75px;
+    float: right;
+    margin-top: 50px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.Fitness-Card-Info h1{
+    font-size: 23px;
+    color: black;
+}
+.Fitness-Card-Info p{
+    font-size: 20px;
+    color: black;
+}
+

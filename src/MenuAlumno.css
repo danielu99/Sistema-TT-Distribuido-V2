@@ -1,0 +1,67 @@
+ .MenuAlumno {
+    text-align: center;
+    background-size: cover;
+    background-image:  url(https://lh3.googleusercontent.com/proxy/nvKMPVyrEpw6QkUExHb3C61PkBDv353AR5F2DGjmhu3RmSBNYl8WePNCgCN_mNx51Y2i8fCCxO9A0OJ4GrqIJE1uAmq9p3Ix1dJg0Jb-XbE);   
+  
+    height: 500px;
+    padding-top: 10px;
+  }
+  
+
+  .bienvenida{
+    color: blak;
+  }
+  
+.container3{
+  text-align: center;
+}
+
+  .separador{
+    width: 5px;
+  }
+  
+  /*
+  button{
+  background-color: blue;
+  background-image:  url(https://cdn2.vectorstock.com/i/1000x1000/17/06/cap-student-icon-white-vector-15961706.jpg);
+     background-size: 650px 95px;
+     
+    font-size: 20px;
+    padding: 26px 30px;
+    border-radius: 10px;
+    border: 2px aqua;
+    width:50%;
+    font-family: ComicSans MS, Geneva, Tahoma, sans-serif;
+  color: red;
+  }*/
+  
+  
+  nav{
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: black;
+    font-size: 20px;
+  }
+  
+  .nav-links{
+    width: 40%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+  }
+  .MenuAlumno-logo {
+    height: 40vmin;
+  }
+  
+  .MenuAlumno-header {
+    height: 50px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: black;
+  } 

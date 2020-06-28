@@ -1,0 +1,89 @@
+.App {
+    text-align: center;
+    background-size: cover;
+    background-image:  url(https://lh3.googleusercontent.com/proxy/Dp5YtzYPPWJvelwqlgtv9G_ApqnV4_CRdBapElqlLLkd_u7MYpGY5lqbCMehsOJ9SvdjzUJ_LprhbK5KAplWJj4BB5HTJwrCMGFynFF2XLE);   
+  
+    height: 1000px;
+    padding-top: 10px;
+  }
+  
+  .container3{
+    text-align: center;
+  }
+  
+  .bienvenida{
+    color: black;
+  }
+  
+  .separador{
+    width: 5px;
+  }
+  
+  td{
+    padding-left: 50px;
+    padding-bottom: 25px;
+    padding-top: 25px;
+  }
+  
+  .tabla{
+    display: block;
+    background-image:  url(https://i.pinimg.com/originals/73/84/f8/7384f856c69960421ee16d41146e9cff.png);
+       background-size: 670px 410px;
+  
+    border-color: rgb(0, 1, 3);
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    width: 50%;
+    border: 3px solid black;
+    border-radius: 11px;
+    font-family: Arial, Geneva, Tahoma, sans-serif;
+    font-size: 23px;
+  }
+  
+  button{
+   background-color: white;
+  background-image:  url(https://image.flaticon.com/icons/png/512/2182/2182578.png);
+     background-size: 650px 95px;
+     
+    font-size: 20px;
+    padding: 26px 30px;
+    border-radius: 10px;
+    border: 2px aqua;
+    width:50%;
+    font-family: ComicSans MS, Geneva, Tahoma, sans-serif;
+  color: red;
+  }
+  
+  nav{
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: black;
+    font-size: 20px;
+  }
+  
+  .nav-links{
+    width: 40%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+  }
+  .App-logo {
+    height: 40vmin;
+  }
+  
+  .App-header {
+    height: 50px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+  }
+  
+  
+  
