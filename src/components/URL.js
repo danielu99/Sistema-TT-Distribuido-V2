@@ -25,7 +25,7 @@ class URL extends React.Component {
     }
 
     async actualizaLink() {
-        const response = await fetch("http://192.168.0.18:4000/ActualizaLink", {
+        const response = await fetch("http://localhost:4000/ActualizaLink", {
             method: "post",
             headers: {
                 "Accept": "application/json",

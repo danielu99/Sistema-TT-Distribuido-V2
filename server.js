@@ -485,7 +485,6 @@ app.post("/EvaluacionesAlumno", (req, res) => {
                         })
                         
                         var sql3 = "select nombre, usuario from profesor where usuario in (" + array + ") "
-                        console.log(sql3)
                         mysqlConnection.query(sql3, (err, resultProfesor) => {
                             const prueba2 = results.rows.map(n => {
                                 const nombre1 = resultProfesor.filter(d => d.usuario === n.profesor)
@@ -563,6 +562,7 @@ app.post("/AlumnoProtocolo", (req, res) => {
                     data: 0
                 })
             }
+            
             else {
                 return res.json({
                     data: results.rows
@@ -592,17 +592,17 @@ app.post("/AgregaPalabrasClave", (req, res) => {
 
 app.post("/PalabrasClave", (req, res) => {
     let conjunto = req.body
-
     var sql = "select palabrasclave Palabra from protocolo_palabrasclave where numerott='" + conjunto.protocolo + "'"
     client.query(sql, (err, results) => {
         if (err) {
-            throw res.send(err)
+            console.log(err.stack)
         }
         else {
-            if (results.length > 0) {
-                return res.json({
-                    data: results.rows
-                })
+            
+            if (results.rows.length > 0) {
+                return res.json(
+                    results.rows
+                )
             }
             else {
                 return res.json({
@@ -615,17 +615,17 @@ app.post("/PalabrasClave", (req, res) => {
 
 app.post("/ObtenLink", (req, res) => {
     let conjunto = req.body
-
-    var sql = "select DocumentoPDF from protocolo where numerott='" + conjunto.protocolo + "'"
+    var sql = "select documentopdf from protocolo where numerott='" + conjunto.protocolo + "'"
     client.query(sql, (err, results) => {
         if (err) {
-            throw res.send(err)
+            console.log(err.stack)
         }
         else {
-            if (results.length > 0) {
-                return res.json({
-                    data: results.rows
-                })
+            if (results.rows.length > 0) {
+                
+                return res.json(
+                    results.rows
+                )
             }
             else {
                 return res.json({

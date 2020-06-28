@@ -64,8 +64,8 @@ class MenuAlumno extends React.Component {
         })
             .catch(err => console.error(err))
         const json = await response.json();
-        if (json.data.length > 0) {
-            this.setState({ protocolo: json.data[0].numeroTT })
+        if (json.data != 0) {
+            this.setState({ protocolo: json.data[0]})
         }
         else {
             this.setState({ protocolo: 'null' })

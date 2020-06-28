@@ -21,7 +21,7 @@ class infoProtocolo extends React.Component {
     }
 
     async obtenerPalabras() {
-        const response = await fetch("http://192.168.0.18:4000/PalabrasClave", {
+        const response = await fetch("http://localhost:4000/PalabrasClave", {
             method: "post",
             headers: {
                 "Accept": "application/json",
@@ -34,12 +34,12 @@ class infoProtocolo extends React.Component {
             .catch(err => console.error(err))
         const json = await response.json();
         if (json.data != 0) {
-            this.setState({ PalabrasClave: json.data })
+            this.setState({ PalabrasClave: json })
         }
     }
 
     async obtenerLink() {
-        const response = await fetch("http://192.168.0.18:4000/ObtenLink", {
+        const response = await fetch("http://localhost:4000/ObtenLink", {
             method: "post",
             headers: {
                 "Accept": "application/json",
@@ -51,15 +51,16 @@ class infoProtocolo extends React.Component {
         })
             .catch(err => console.error(err))
         const json = await response.json();
+        
         if(json.data!=0){
-            this.setState({Link:json.data[0].DocumentoPDF})
+            this.setState({Link:json[0].documentopdf})
         }
     }
 
-    renderPalabras = ({ Palabra }) =>
+    renderPalabras = ({ palabra }) =>
         <tr>
             <td>
-                {Palabra}
+                {palabra}
             </td>
         </tr>
 

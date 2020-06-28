@@ -23,7 +23,7 @@ class ActualizaProtocolo extends React.Component {
     }
 
     async finalizar() {
-        const response = await fetch("http://192.168.0.18:4000/FinalizaEvaluacion", {
+        const response = await fetch("http://localhost:4000/FinalizaEvaluacion", {
             method: "post",
             headers: {
                 "Accept": "application/json",

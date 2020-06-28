@@ -30,7 +30,7 @@ class PalabrasClave extends React.Component {
 
     async subirpalabras() {
         for (var i = 0; i < this.state.palabras.length; i++) {
-            const response = await fetch("http://192.168.0.18:4000/AgregaPalabrasClave", {
+            const response = await fetch("http://localhost:4000/AgregaPalabrasClave", {
                 method: "post",
                 headers: {
                     "Accept": "application/json",
@@ -44,7 +44,7 @@ class PalabrasClave extends React.Component {
                 .catch(err => console.error(err))
             const json = await response.json();
             if (json.data == 0) {
-                alert("Una de las palabras ya fue registrada!...")
+                alert("Una de las palabras ya fue registrada o es muy larga!...")
                 window.location.href = "/Alumno/Bienvenido/Actualiza/Palabras"
                 return 0
             }

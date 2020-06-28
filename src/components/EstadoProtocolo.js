@@ -60,7 +60,7 @@ class EstadoProtocolo extends React.Component {
         const json = await response.json();
         
         this.setState({ evaluaciones: json })
-        console.log(this.state.evaluaciones)
+        
     }
 
     entrega() {
